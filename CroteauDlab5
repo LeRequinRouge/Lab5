@@ -1,0 +1,285 @@
+// Drew Croteau
+// CPSC 121 Lab 5
+// 03/04/2018
+
+#include<iostream>
+#include<iomanip>
+using namespace std;
+
+// Function prototypes.
+int sumfinder(int [], int);
+double averagefinder(int[], int);
+void display(int[], int);
+void difference(int[], int);
+bool search(int[], int);
+
+int main()
+{
+	const int SIZE = 5;
+	int five_num[SIZE];
+	int sum;
+	double average; 
+	char decision;
+	bool searching; 
+	char repeat;
+
+	cout << "Please enter five values." << endl;;
+
+	for (int i = 0; i < 5; i++)
+	{
+		cin >> five_num[i];
+	}
+
+	cout << endl;
+
+	// Menu driven progression.
+	cout << "Please choose an option from the menu below." << endl;
+	cout << "Input the character adjacent to the option." << endl << endl;
+	cout << "A) Display the sum of the given values." << endl;
+	cout << "B) Display the mean of the given values." << endl;
+	cout << "C) Display all the given values." << endl;
+	cout << "D) Display the difference of each sequential value." << endl;
+	cout << "E) Input another value and see if it's already in the array." << endl;
+	cout << "F) Edit the initial given values." << endl;
+	cout << "G) Exit the program." << endl;
+	cin >> decision;
+
+	cout << endl; 
+
+	if (decision == 'A' || decision == 'a')
+	{
+		sum = sumfinder(five_num, SIZE);
+		cout << "The sum of your values is: " << sum << endl << endl;
+	}
+
+	else if (decision == 'B' || decision == 'b')
+	{
+		average = averagefinder(five_num, SIZE);
+		cout << "The average of your values is: " << setprecision(1) << fixed << average << endl << endl;
+	}
+
+	else if (decision == 'C' || decision == 'c')
+	{
+		display(five_num, SIZE);
+		cout << endl;
+	}
+
+	else if (decision == 'D' || decision == 'd')
+	{
+		cout << "Here are the sequential differences of your values: ";
+		difference(five_num, SIZE); 
+		cout << endl << endl;
+	}
+
+	else if (decision == 'E' || decision == 'e')
+	{
+		searching = search(five_num, SIZE);
+		
+		if (searching == true)
+		{
+			cout << "Your new value is already within the array." << endl << endl;
+		}
+
+		else if (searching == false)
+		{
+			cout << "Your new value is not within the array." << endl << endl;
+		}
+	}
+
+	else if (decision == 'F' || decision == 'f')
+	{
+		cout << "Please enter five values." << endl;;
+
+		for (int i = 0; i < 5; i++)
+		{
+			cin >> five_num[i];
+		}
+
+		cout << endl << endl;
+	}
+
+	else if (decision == 'G' || decision == 'g')
+	{
+		cout << "Have a good one!" << endl; 
+		system("pause");
+		return 0;
+	}
+
+	else
+	{
+		cout << "Your input was invalid." << endl;
+		cout << "Input the character corresponding to the option." << endl;
+		cin >> decision;
+		cout << endl;
+	}
+
+	cout << "Would you like to see the menu again?" << endl;
+	cout << "Type 'Y' for yes or any other input to terminate the program." << endl;
+	cin >> repeat;
+
+	cout << endl;
+
+	while (repeat == 'Y' || repeat == 'y')
+	{
+		// Menu driven progression.
+		cout << "Please choose an option from the menu below." << endl;
+		cout << "Input the character adjacent to the option." << endl << endl;
+		cout << "A) Display the sum of the given values." << endl;
+		cout << "B) Display the mean of the given values." << endl;
+		cout << "C) Display all the given values." << endl;
+		cout << "D) Display the difference of each sequential value." << endl;
+		cout << "E) Input another value and see if it's already in the array." << endl;
+		cout << "F) Edit the initial given values." << endl;
+		cout << "G) Exit the program." << endl;
+		cin >> decision;
+
+		cout << endl;
+
+		if (decision == 'A' || decision == 'a')
+		{
+			sum = sumfinder(five_num, SIZE);
+			cout << "The sum of your values is: " << sum << endl << endl;
+		}
+
+		else if (decision == 'B' || decision == 'b')
+		{
+			average = averagefinder(five_num, SIZE);
+			cout << "The average of your values is: " << setprecision(1) << fixed << average << endl << endl;
+		}
+
+		else if (decision == 'C' || decision == 'c')
+		{
+			display(five_num, SIZE);
+			cout << endl;
+		}
+
+		else if (decision == 'D' || decision == 'd')
+		{
+			cout << "Here are the sequential differences of your values: ";
+			difference(five_num, SIZE);
+			cout << endl;
+		}
+
+		else if (decision == 'E' || decision == 'e')
+		{
+			searching = search(five_num, SIZE);
+
+			if (searching == true)
+			{
+				cout << "Your new value is already within the array." << endl;
+			}
+
+			else if (searching == false)
+			{
+				cout << "Your new value is not within the array." << endl;
+			}
+		}
+
+		else if (decision == 'F' || decision == 'f')
+		{
+			cout << "Please enter five values." << endl;;
+
+			for (int i = 0; i < 5; i++)
+			{
+				cin >> five_num[i];
+			}
+
+			cout << endl;
+		}
+
+		else if (decision == 'G' || decision == 'g')
+		{
+			cout << "Have a good one!" << endl;
+			system("pause");
+			return 0;
+		}
+
+		else
+		{
+			cout << "Your input was invalid." << endl;
+			cout << "Input the character corresponding to the option." << endl;
+			cin >> decision;
+			cout << endl;
+		}
+
+		cout << "Would you like to see the menu again?" << endl;
+		cout << "Type 'Y' for yes or any other input to terminate the program." << endl;
+		cin >> repeat;
+
+		cout << endl;
+	}
+
+	system("pause");
+	return 0;
+}
+
+// Function that calculates the sum of the user's values. 
+int sumfinder(int five_num[], int SIZE)
+{
+	int SHARK = 0;
+
+	for (int i = 0; i < SIZE; i++)
+	{
+		SHARK = SHARK + five_num[i]; 
+	}
+
+	return SHARK; 
+}
+
+// Function that calculates the mean/average of the user's values.
+double averagefinder(int five_num[], int SIZE)
+{
+	double SHARK = 0;
+	double FISH;
+
+	for (int i = 0; i < SIZE; i++)
+	{
+		SHARK = SHARK + five_num[i];
+	}
+
+	FISH = SHARK / SIZE;
+	return FISH; 
+}
+
+// Function that displays the user's values.
+void display(int five_num[], int SIZE)
+{
+	for (int i = 0; i < SIZE; i++)
+	{
+		cout << five_num[i] << endl; 
+	}
+}
+
+// Function that displays the sequential difference between array values.
+void difference(int five_num[], int SIZE)
+{
+	int SHARK = 0;
+	int FISH;
+
+	for (int i = 0; i < SIZE - 1; i++)
+	{
+		FISH = five_num[i+1];
+		SHARK = five_num[i] - FISH;
+		cout << SHARK << ", "; 
+	}
+}
+
+// Function that searches for an additional user input within the array.
+bool search(int five_num[], int SIZE)
+{
+	int SHARK;
+
+	cout << "Please enter a value." << endl;
+	cin >> SHARK;
+
+	cout << endl;
+
+	for (int i = 0; i < SIZE; i++)
+	{
+		if (SHARK == five_num[i])
+		{
+			return true; 
+		}
+	}
+	return false; 
+}
